@@ -1,4 +1,4 @@
-package org.myspring.factory.config.resource;
+package org.myspring.factory.config.io;
 
 import java.net.URL;
 
