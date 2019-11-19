@@ -1,4 +1,4 @@
-package org.myspring.factory.config;
+package org.myspring.factory.config.bean;
 
 /**
  * @author Leo Liu

@@ -1,4 +1,4 @@
-package org.myspring.factory.config;
+package org.myspring.factory.config.bean;
 
 /**
  * 源码里BeanDefinition是接口定义一些操作，实体是RootDefinition等，为了简便直接用BeanDefinition

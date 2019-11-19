@@ -1,4 +1,4 @@
-package org.myspring.factory.config;
+package org.myspring.factory.config.bean;
 
 public class BeanReference {
     private String name;
