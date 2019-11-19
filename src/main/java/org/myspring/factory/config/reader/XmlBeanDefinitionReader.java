@@ -1,8 +1,8 @@
 package org.myspring.factory.config.reader;
 
-import org.myspring.factory.config.BeanDefinition;
-import org.myspring.factory.config.BeanReference;
-import org.myspring.factory.config.PropertyValue;
+import org.myspring.factory.config.bean.BeanDefinition;
+import org.myspring.factory.config.bean.BeanReference;
+import org.myspring.factory.config.bean.PropertyValue;
 import org.myspring.factory.config.io.ResourceLoader;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

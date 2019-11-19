@@ -1,6 +1,6 @@
 package org.myspring.factory.interfaces;
 
-import org.myspring.factory.config.BeanDefinition;
+import org.myspring.factory.config.bean.BeanDefinition;
 
 /**
  * @author Leo Liu
@@ -8,7 +8,7 @@ import org.myspring.factory.config.BeanDefinition;
  */
 public interface BeanDefinitionRegistry {
 
-  void registerBeanDefinition(String beanName, BeanDefinition beanDefinition);
+    void registerBeanDefinition(String beanName, BeanDefinition beanDefinition);
 
-  BeanDefinition getBeanDefinition(String beanName);
+    BeanDefinition getBeanDefinition(String beanName);
 }
