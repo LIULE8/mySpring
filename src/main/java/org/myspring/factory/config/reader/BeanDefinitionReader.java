@@ -5,5 +5,5 @@ package org.myspring.factory.config.reader;
  */
 public interface BeanDefinitionReader {
 
-    void loadBeanDefinitions(String location);
+    void loadBeanDefinitions(String location) throws Exception;
 }
