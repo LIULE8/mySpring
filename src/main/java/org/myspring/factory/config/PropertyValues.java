@@ -13,8 +13,7 @@ public class PropertyValues {
 
   private final List<PropertyValue> propertyValueList = new ArrayList<>(256);
 
-  public void addPropertyValues(String propertyName, Object propertyValue) {
-    PropertyValue pv = new PropertyValue(propertyName, propertyValue);
+  public void addPropertyValue(PropertyValue pv) {
     for (int i = 0; i < propertyValueList.size(); i++) {
       PropertyValue currentPv = propertyValueList.get(i);
       if (currentPv.getName().equals(pv.getName())) {
