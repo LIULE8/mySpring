@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+    <bean id="city" class="org.myspring.City">
+        <property name="name" value="广州"/>
+        <property name="description" ref="咩咩咩"/>
+    </bean>
+</beans>
