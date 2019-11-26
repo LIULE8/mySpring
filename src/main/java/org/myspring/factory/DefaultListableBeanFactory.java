@@ -24,13 +24,11 @@ public class DefaultListableBeanFactory extends AbstractBeanFactory implements S
                 BeanReference beanReference = (BeanReference) value;
                 value = getBean(beanReference.getName());
             }
-
             try {
                 Method declaredMethod = bean.getClass().getDeclaredMethod(
                         "set" + propertyValue.getName().substring(0, 1).toUpperCase()
                                 + propertyValue.getName().substring(1), value.getClass());
                 declaredMethod.setAccessible(true);
-
                 declaredMethod.invoke(bean, value);
             } catch (NoSuchMethodException e) {
                 Field declaredField = bean.getClass().getDeclaredField(propertyValue.getName());

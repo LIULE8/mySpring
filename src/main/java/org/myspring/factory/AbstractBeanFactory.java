@@ -24,16 +24,22 @@ public class AbstractBeanFactory implements BeanFactory, BeanDefinitionRegistry 
 
     private List<BeanPostProcessor> beanPostProcessors = new ArrayList<>(256);
 
+    /**
+     * getBean，是真正创建bean的方法，但是源码中会做很多操作，如避免循环依赖等问题
+     * @param name
+     * @return
+     * @throws Exception
+     */
     @Override
     public Object getBean(String name) throws Exception {
         BeanDefinition beanDefinition = beanDefinitionMap.get(name);
         if (beanDefinition == null) {
-            throw new IllegalArgumentException("No bean named " + name + " is defined");
+            throw new NoSuchBeanDefinitionException(name);
         }
         Object bean = beanDefinition.getBean();
         if (bean == null) {
             bean = doCreateBean(beanDefinition);
-            bean = initializeBean(bean, name);
+            bean = initializeBean(bean, name); // 这里加后置处理器，可以参与进spring的ioc创建中
             beanDefinition.setBean(bean);
         }
         return bean;
@@ -54,8 +60,6 @@ public class AbstractBeanFactory implements BeanFactory, BeanDefinitionRegistry 
         for (BeanPostProcessor beanPostProcessor : beanPostProcessors) {
             bean = beanPostProcessor.postProcessBeforeInitialization(bean, name);
         }
-
-        // TODO:call initialize method
         for (BeanPostProcessor beanPostProcessor : beanPostProcessors) {
             bean = beanPostProcessor.postProcessAfterInitialization(bean, name);
         }
@@ -73,15 +77,19 @@ public class AbstractBeanFactory implements BeanFactory, BeanDefinitionRegistry 
         return bean;
     }
 
-    protected void applyPropertyValues(Object bean, BeanDefinition beanDefinition) throws Exception {
-
-    }
+    protected void applyPropertyValues(Object bean, BeanDefinition beanDefinition) throws Exception {}
 
     public void addBeanPostProcessor(BeanPostProcessor beanPostProcessor) throws Exception {
         this.beanPostProcessors.add(beanPostProcessor);
     }
 
-    public List getBeansForType(Class<?> type) throws Exception {
+    /**
+     * isAssignableFrom 和 instanceOf 作用类似，instanceOf:类， isAssignableFrom: 对象
+     * @param type
+     * @return
+     * @throws Exception
+     */
+    public List<?> getBeansForType(Class<?> type) throws Exception {
         List<Object> beans = new ArrayList<>(256);
         for (String beanDefinitionName : beanDefinitionNames) {
             if (type.isAssignableFrom(beanDefinitionMap.get(beanDefinitionName).getBeanClass())) {

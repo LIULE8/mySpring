@@ -66,21 +66,22 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
         List propertyNodes = element.elements("property");
         for (Object node : propertyNodes) {
             if (node instanceof Element) {
-                Element property = ((Element) node);
-                String name = property.attributeValue("name");
-                String value = property.attributeValue("value");
-                if (value != null && value.length() > 0) {
-                    beanDefinition.getPropertyValues().addPropertyValue(new PropertyValue(name, value));
-                } else {
-                    String ref = property.attributeValue("ref");
-                    if (ref == null || ref.length() == 0) {
-                        throw new IllegalArgumentException("Configuration problem: <property> element for property '"
-                                + name + "' must specify a ref or value");
-                    }
-                    BeanReference beanReference = new BeanReference(ref);
-                    beanDefinition.getPropertyValues().addPropertyValue(new PropertyValue(name, beanReference));
-                }
+                continue;
             }
+            Element property = ((Element) node);
+            String name = property.attributeValue("name");
+            String value = property.attributeValue("value");
+            if (value != null && value.length() > 0) {
+                beanDefinition.getPropertyValues().addPropertyValue(new PropertyValue(name, value));
+                continue;
+            }
+            String ref = property.attributeValue("ref");
+            if (ref == null || ref.length() == 0) {
+                throw new IllegalArgumentException("Configuration problem: <property> element for property '"
+                        + name + "' must specify a ref or value");
+            }
+            BeanReference beanReference = new BeanReference(ref);
+            beanDefinition.getPropertyValues().addPropertyValue(new PropertyValue(name, beanReference));
         }
     }
 }
