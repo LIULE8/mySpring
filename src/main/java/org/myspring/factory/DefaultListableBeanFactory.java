@@ -18,7 +18,7 @@ public class DefaultListableBeanFactory extends AbstractBeanFactory implements S
     private static final long serialVersionUID = -5463338182566609633L;
 
     protected void applyPropertyValues(Object bean, BeanDefinition mbd) throws Exception {
-        for (PropertyValue propertyValue : mbd.getPropertyValues().getPropertyValueList()) {
+        for (PropertyValue propertyValue : mbd.getPropertyValues().getPropertyValues()) {
             Object value = propertyValue.getValue();
             if (value instanceof BeanReference) {
                 BeanReference beanReference = (BeanReference) value;

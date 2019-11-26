@@ -6,10 +6,13 @@ import org.myspring.factory.config.io.ResourceLoader;
 import java.util.HashMap;
 import java.util.Map;
 
-abstract class AbstractBeanDefinitionReader implements BeanDefinitionReader {
+/**
+ * @author Leo Liu
+ * @create 19/11/2019
+ */
+public abstract class AbstractBeanDefinitionReader implements BeanDefinitionReader {
 
     private Map<String, BeanDefinition> registry = new HashMap<>();
-
     private ResourceLoader resourceLoader;
 
     AbstractBeanDefinitionReader(ResourceLoader resourceLoader) {

@@ -1,5 +1,9 @@
 package org.myspring.factory.config.bean;
 
+/**
+ * @author Leo Liu
+ * @create 19/11/2019
+ */
 public class BeanReference {
     private String name;
 

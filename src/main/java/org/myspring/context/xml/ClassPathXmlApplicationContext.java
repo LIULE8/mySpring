@@ -9,6 +9,10 @@ import org.myspring.factory.config.reader.XmlBeanDefinitionReader;
 
 import java.util.Map;
 
+/**
+ * @author Leo Liu
+ * @create 19/11/2019
+ */
 public class ClassPathXmlApplicationContext extends AbstractApplicationContext {
 
 	private String configLocation;

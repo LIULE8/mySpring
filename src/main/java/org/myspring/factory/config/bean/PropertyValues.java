@@ -11,19 +11,24 @@ import java.util.List;
  */
 public class PropertyValues {
 
-  private final List<PropertyValue> propertyValueList = new ArrayList<>(256);
+    private final List<PropertyValue> propertyValues = new ArrayList<>(256);
 
-  public void addPropertyValue(PropertyValue pv) {
-    for (int i = 0; i < propertyValueList.size(); i++) {
-      PropertyValue currentPv = propertyValueList.get(i);
-      if (currentPv.getName().equals(pv.getName())) {
-        // 省略merge操作，直接替换
-        propertyValueList.set(i, pv);
-      }
+    public List<PropertyValue> getPropertyValues() {
+        return propertyValues;
     }
-  }
 
-  public List<PropertyValue> getPropertyValueList() {
-    return propertyValueList;
-  }
+    /**
+     * 这里的操作较为复杂，会做很多校验，然后merge，简化就直接设置
+     *
+     * @param pv
+     */
+    public void addPropertyValue(PropertyValue pv) {
+        for (int i = 0; i < propertyValues.size(); i++) {
+            PropertyValue currentPv = propertyValues.get(i);
+            if (currentPv.getName().equals(pv.getName())) {
+                // 省略merge操作，直接替换
+                propertyValues.set(i, pv);
+            }
+        }
+    }
 }
