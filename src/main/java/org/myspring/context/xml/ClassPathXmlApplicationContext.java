@@ -17,6 +17,12 @@ public class ClassPathXmlApplicationContext extends AbstractApplicationContext {
 		this(configLocation, new DefaultListableBeanFactory());
 	}
 
+	/**
+	 * ioc xml的入口，跟AnnotationConfigApplicationContext区别就是AnnotationConfigApplicationContext需要单独对一些config类进行register，否则不知道扫描哪些类
+	 * @param configLocation
+	 * @param beanFactory
+	 * @throws Exception
+	 */
 	public ClassPathXmlApplicationContext(String configLocation, AbstractBeanFactory beanFactory) throws Exception {
 		super(beanFactory);
 		this.configLocation = configLocation;
