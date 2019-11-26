@@ -24,11 +24,11 @@ public abstract class AbstractApplicationContext implements ApplicationContext {
      * @throws Exception
      */
     protected void refresh() throws Exception {
-        loadBeanDefinitions(beanFactory); //这个调用不在refresh方法里，为了方便放在这里.
         registerBeanPostProcessors(beanFactory);
         onRefresh();
     }
 
+    @SuppressWarnings("all")
     private void registerBeanPostProcessors(AbstractBeanFactory beanFactory) throws Exception {
         List beanPostProcessors = beanFactory.getBeansForType(BeanPostProcessor.class);
         for (Object beanPostProcessor : beanPostProcessors) {

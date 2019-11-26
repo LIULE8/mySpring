@@ -30,6 +30,7 @@ public class ClassPathXmlApplicationContext extends AbstractApplicationContext {
 	public ClassPathXmlApplicationContext(String configLocation, AbstractBeanFactory beanFactory) throws Exception {
 		super(beanFactory);
 		this.configLocation = configLocation;
+		loadBeanDefinitions(beanFactory); // 这个是自己加的
 		refresh();
 	}
 
